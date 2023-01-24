@@ -1,6 +1,7 @@
 /******************************************
 Treehouse FSJS Techdegree:
 project 1 - A Random Quote Generator
+Katherine Seibel, 2023
 ******************************************/
 
 // For assistance: 
@@ -9,28 +10,9 @@ project 1 - A Random Quote Generator
 
 /*** 
  * `quotes` array 
+ * The array of objects provides five quotes with attributions. 
+ * Year and citation could not be found for the following quotes.
 ***/
-
-
-
-/***
- * `getRandomQuote` function
-***/
-
-
-
-/***
- * `printQuote` function
-***/
-
-
-
-/***
- * click event listener for the print quote button
- * DO NOT CHANGE THE CODE BELOW!!
-***/
-
-document.getElementById('load-quote').addEventListener("click", printQuote, false);
 
 var quotes = [
   { 
@@ -78,6 +60,37 @@ var quotes = [
   },
 ];
 
-//console.log(quotes);
 
-function getRandomQuote
+/***
+ * `getRandomQuote` function
+ * The getRandomQuote function creates a random number. 
+ * In the function, create a variable to store a random number. 
+ * The random number is used to return a random quote object from the quotes array.
+***/
+
+
+function getRandomQuote (){
+  const randomNumber = Math.floor(Math.random()*(quotes.length));
+  const quote = quotes[randomNumber];
+  return quote;
+}
+
+console.log(getRandomQuote());
+
+getRandomQuote();
+
+/***
+ * `printQuote` function
+***/
+ function printQuote (){
+  getRandomQuote();
+
+
+ }
+
+/***
+ * click event listener for the print quote button
+ * DO NOT CHANGE THE CODE BELOW!!
+***/
+
+document.getElementById('load-quote').addEventListener("click", printQuote, false);
