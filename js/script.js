@@ -9,9 +9,8 @@ Katherine Seibel, 2023
   // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
 
 /*** 
- * `quotes` array 
- * The array of objects provides five quotes with attributions. 
- * Year and citation could not be found for the following quotes.
+ * The`quotes` array of objects provides five quotes with attributions. 
+ * Year and citation could not be found for the bulk majority of the following quotes.
 ***/
 
 var quotes = [
@@ -19,7 +18,7 @@ var quotes = [
     quote: 'Don\'t wait until you\'ve reached your goal to be proud of yourself. Be proud of every step you take toward reaching that goal.',
     source: 'Simone Biles',
     citation: '',
-    year:'',
+    year:'2022',
     occupation: 'Olympic Gymnast'
   },
 
@@ -71,35 +70,45 @@ function getRandomQuote (){
   return quote;
 }
 
-//getRandomQuote(console.log(getRandomQuote()));
-
 /***
  *The `printQuote` function provides a radom quote to display in the browser.
 ***/
 
  function printQuote (){
-  const quoteToDisplay = getRandomQuote();
-  const html = 
-    `<p class="quote"> ${quoteToDisplay.quote}</p>
-    <p class="source">${quoteToDisplay.source}<span class="occupation">, ${quoteToDisplay.occupation}</span>
-    </p>`;
-    return html;
+  let quoteToDisplay = getRandomQuote();
+  let html = 
+    `<p class="quote"> ${quoteToDisplay.quote} </p>
+    <p class="source">${quoteToDisplay.source}
+    `
+      if (quoteToDisplay.occupation) {
+        html+= `<span class="occupation">, ${quoteToDisplay.occupation}</span>`
+      }
+      if(quoteToDisplay.year) {
+        html+=`<span class="year">${quoteToDisplay.year}</span>`
+      } else {
+        html+=`</p>`
+      }
+      document.getElementById('quote-box').innerHTML = html;
 }
 
-document.getElementById('quote-box').innerHTML = printQuote(); 
-
-console.log(printQuote());
+//console.log(printQuote());
 
 /***
  * The `randomColor`function provides a random background color for the page in the browser.
- */
-let htmlBackground = '';
-const randomValueForColor = ()=>Math.floor(Math.random()*256);
+ ***/
+
+let randomValueForColor = ()=>Math.floor(Math.random()*256);
 
 function randomColor(){
-  let color = 'rgb(${randomValueForColor()},${randomValueForColor()},${randomValueForColor()})';
+  let color = 'rgb(${randomValueForColor}, {randomValueForColor}, {randomValueForColor})';
   document.body.style.backgroundColor = color;
 }
+
+/***
+ * The `autoRefresh`variable provides the setInterval() method to refresh the quote on the page in the browser.
+ ***/
+
+let autoRefresh = setInterval(printQuote, 1000);
 
 /***
  * click event listener for the print quote button
