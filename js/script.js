@@ -4,15 +4,10 @@ project 1 - A Random Quote Generator
 Katherine Seibel, 2023
 ******************************************/
 
-// For assistance: 
-  // Check the "Project Resources" section of the project instructions
-  // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
-
 /*** 
  * The`quotes` array of objects provides five quotes with attributions. 
- * Year and citation could not be found for the bulk majority of the following quotes.
+ * Year and citation could not be found for the majority of the following quotes.
 ***/
-
 var quotes = [
   { 
     quote: 'Don\'t wait until you\'ve reached your goal to be proud of yourself. Be proud of every step you take toward reaching that goal.',
@@ -53,7 +48,6 @@ var quotes = [
  *The `getRandomQuote` function creates a random number. 
  * The random number is used to return a random quote object from the quotes array.
 ***/
-
 function getRandomQuote (){
   const randomNumber = Math.floor(Math.random()*(quotes.length));
   const quote = quotes[randomNumber];
@@ -63,7 +57,6 @@ function getRandomQuote (){
 /***
  *The `printQuote` function provides a radom quote to display in the browser.
 ***/
-
  function printQuote (){
   let quoteToDisplay = getRandomQuote();
   let html = 
@@ -80,34 +73,30 @@ function getRandomQuote (){
         html+=`</p>`
       }
       document.getElementById('quote-box').innerHTML = html;
+
+      document.body.style.backgroundColor = randomColor();
 }
 
 //console.log(printQuote());
 
 /***
  * The `randomColor`function provides a random background color for the page in the browser.
- * It's not functioning and I can't figure out what is wrong so any feedback, I would really appreciate.
- ***/
-
-
+ * ***/
 function randomColor(){
   let randomValueForColor1 = Math.floor(Math.random()*256);
   let randomValueForColor2 = Math.floor(Math.random()*256);
   let randomValueForColor3 = Math.floor(Math.random()*256);
-  let color = 'rgb(${randomValueForColor1}, ${randomValueForColor2}, ${randomValueForColor3})';
+  let color = `rgb(${randomValueForColor1}, ${randomValueForColor2}, ${randomValueForColor3})`;
+  
   return color;
 }
-
-document.body.style.backgroundColor = randomColor();
 
 /***
  * The `autoRefresh`variable provides the setInterval() method to refresh the quote on the page in the browser.
  ***/
-
 let autoRefresh = setInterval(printQuote, 2000);
 
 /***
  * click event listener for the print quote button
- * DO NOT CHANGE THE CODE BELOW!!
 ***/
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
